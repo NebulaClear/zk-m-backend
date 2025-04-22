@@ -10,8 +10,13 @@ export class UserController {
   ) {}
   @Get()
   getUser(): any {
-    const db: string | undefined = this.configService.get('DB_HOST');
-    console.log(db);
+    console.log(this.configService.get('DB_HOST'));
+    console.log(this.configService.get('DB_PORT'));
+    console.log(this.configService.get('DB_USER'));
+    console.log(this.configService.get('DB_PASSWORD'));
+    console.log(this.configService.get('DB_NAME'));
+    console.log(this.configService.get('DB_HOST'));
+    console.log(this.configService.get('DB_HOST'));
     return this.userService.getUsers();
   }
 
