@@ -7,12 +7,12 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   // Swagger 配置
   const config = new DocumentBuilder()
-    .setTitle('Language API')
-    .setDescription('Language management endpoints')
+    .setTitle('ZK-Server-API')
+    .setDescription('zk_edu')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api-docs', app, document);
   await app.listen(process.env.PORT ?? 3010);
 }
 bootstrap();

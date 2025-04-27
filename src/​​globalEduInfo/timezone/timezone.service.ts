@@ -68,10 +68,15 @@ export class TimeZoneService {
     return tz;
   }
 
-  async update(id: string, dto: UpdateTimezoneDto): Promise<TimeZone> {
+  async update(id: string, dto: UpdateTimezoneDto): Promise<any> {
     const tz = await this.findOne(id);
-    const updated = this.tzRepo.merge(tz, dto);
-    return this.tzRepo.save(updated);
+    console.log(tz);
+
+    await this.tzRepo.update(tz, dto);
+    return {
+      message: 'Language updated successfully',
+      code: 200,
+    };
   }
 
   async delete(id: string): Promise<void> {

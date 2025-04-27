@@ -57,16 +57,18 @@ export class CurrencyService {
     return currency;
   }
 
-  async updateCurrency(
-    code: string,
-    dto: UpdateCurrencyDto,
-  ): Promise<Currency> {
-    const currency = await this.findByCode(code);
-    const updated = this.currencyRepo.merge(currency, dto);
-    return this.currencyRepo.save(updated);
+  async updateCurrency(code: string, dto: UpdateCurrencyDto): Promise<any> {
+    // const currency = await this.findByCode(code);
+    // const updated = this.currencyRepo.merge(currency, dto);
+    // return this.currencyRepo.save(updated);
+    await this.currencyRepo.update(code, dto);
+    return {
+      message: 'Currency updated successfully',
+      code: 200,
+    };
   }
 
-  async deleteCurrency(code: string): Promise<void> {
+  async deleteCurrency(code: string): Promise<any> {
     // 检查是否有国家关联
     const relations = await this.countryCurrencyRepo.find({
       where: { currency_code: code },
@@ -82,6 +84,10 @@ export class CurrencyService {
     if (result.affected === 0) {
       throw new NotFoundException(`Currency ${code} not found`);
     }
+    return {
+      message: 'Currency deleted successfully',
+      code: 200,
+    };
   }
 
   async getCountriesUsingCurrency(

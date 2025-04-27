@@ -16,6 +16,8 @@ export class LanguageService {
   ) {}
 
   async createLanguage(dto: CreateLanguageDto): Promise<Language> {
+    console.log('LanguageService.createLanguage', dto);
+
     // 检查重复代码
     const existing = await this.languageRepo.findOne({
       where: [
@@ -61,20 +63,37 @@ export class LanguageService {
     return language;
   }
 
-  async updateLanguage(
-    code: string,
-    dto: UpdateLanguageDto,
-  ): Promise<Language> {
-    const language = await this.findLanguageByCode(code);
-    const updated = this.languageRepo.merge(language, dto);
-    return this.languageRepo.save(updated);
+  async updateLanguage(code: string, dto: UpdateLanguageDto): Promise<any> {
+    // 检查重复代码
+    const existing = await this.languageRepo.findOne({
+      where: [
+        { language_id: dto.language_id },
+        { language_name: dto.language_name },
+      ],
+    });
+
+    if (existing) {
+      throw new Error('Language code or name already exists');
+    }
+    // const language = await this.findLanguageByCode(code);
+    // const updated = this.languageRepo.merge(language, dto);
+    // return this.languageRepo.save(updated);
+    await this.languageRepo.update(code, dto);
+    return {
+      message: 'Language updated successfully',
+      code: 200,
+    };
   }
 
-  async deleteLanguage(code: string): Promise<void> {
+  async deleteLanguage(code: string): Promise<any> {
     const result = await this.languageRepo.delete(code);
     if (result.affected === 0) {
       throw new NotFoundException(`Language ${code} not found`);
     }
+    return {
+      message: 'Language deleted successfully',
+      code: 200,
+    };
   }
 
   async getCountriesUsingLanguage(code: string): Promise<CountryLanguage[]> {

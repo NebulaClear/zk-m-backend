@@ -60,6 +60,8 @@ export class TimeZoneController {
   @Put(':id')
   @ApiOperation({ summary: '更新时区信息' })
   async update(@Param('id') id: string, @Body() dto: UpdateTimezoneDto) {
+    console.log(id);
+
     return this.tzService.update(id, dto);
   }
 

@@ -3,7 +3,7 @@ import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Country } from './country.entity';
 import { Currency } from '../../currency/entities/currency.entity';
 
-@Entity({ name: 'CountryCurrency' })
+@Entity({ name: 'country_currency' })
 export class CountryCurrency {
   // 复合主键配置
   @PrimaryColumn({

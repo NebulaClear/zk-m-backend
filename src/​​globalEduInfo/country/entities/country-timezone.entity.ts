@@ -3,7 +3,7 @@ import { Entity, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Country } from './country.entity';
 import { TimeZone } from '../../timezone/entities/timezone.entity';
 
-@Entity({ name: 'CountryTimeZone' })
+@Entity({ name: 'country_timeZone' })
 export class CountryTimeZone {
   @PrimaryColumn({
     type: 'char',

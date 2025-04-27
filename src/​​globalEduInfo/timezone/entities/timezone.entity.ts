@@ -6,7 +6,7 @@ export class TimeZone {
   @PrimaryColumn({
     type: 'varchar',
     length: 50,
-    comment: 'IANA时区标识符（如Asia/Shanghai）',
+    comment: 'IANA时区标识符（如Asia_Shanghai）',
   })
   timezone_id: string;
 

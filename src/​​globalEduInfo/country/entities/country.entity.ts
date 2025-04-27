@@ -1,18 +1,11 @@
 // src/countries/entities/country.entity.ts
-import {
-  Entity,
-  PrimaryColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToMany,
-} from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
 import { CountryLanguage } from './country-language.entity';
 import { CountryCurrency } from './country-currency.entity';
 import { CountryTimeZone } from './country-timezone.entity';
 // import { VisaInfo } from '../../visas/entities/visa-info.entity';
 
-@Entity({ name: 'Country' })
+@Entity({ name: 'country' })
 export class Country {
   @PrimaryColumn({
     type: 'char',
@@ -95,14 +88,14 @@ export class Country {
   })
   country_safety_rating: number;
 
-  @CreateDateColumn({
+  @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     comment: '记录创建时间',
   })
   created_at: Date;
 
-  @UpdateDateColumn({
+  @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',

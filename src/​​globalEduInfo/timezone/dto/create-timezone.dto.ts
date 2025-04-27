@@ -3,7 +3,7 @@ import { IsNotEmpty, Matches, IsString } from 'class-validator';
 export class CreateTimezoneDto {
   @IsString()
   @IsNotEmpty()
-  @Matches(/^[A-Za-z_]+\/[A-Za-z_]+$/, {
+  @Matches(/^[A-Za-z_]+-[A-Za-z_]+$/, {
     message: '无效的IANA时区格式（示例：Asia/Shanghai）',
   })
   timezone_id: string;

@@ -6,6 +6,9 @@ import {
   IsOptional,
   IsArray,
 } from 'class-validator';
+import { CountryLanguage } from '../entities/country-language.entity';
+import { CountryCurrency } from '../entities/country-currency.entity';
+import { CountryTimeZone } from '../entities/country-timezone.entity';
 
 export class CreateCountryDto {
   @IsISO31661Alpha2()
@@ -50,20 +53,20 @@ export class CreateCountryDto {
 
   @IsArray()
   @IsString({ each: true })
-  currencies: string[];
+  currencies: CountryCurrency[];
 
   @IsString()
   primary_currency: string;
 
   @IsArray()
   @IsString({ each: true })
-  languages: string[];
+  languages: CountryLanguage[];
 
   @IsArray()
   @IsString({ each: true })
-  official_languages: string[];
+  official_languages: CountryLanguage[];
 
   @IsArray()
   @IsString({ each: true })
-  timezones: string[];
+  timezones: CountryTimeZone[];
 }

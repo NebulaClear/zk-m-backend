@@ -105,3 +105,7 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 # 库
 使用官方库 @nestjs/config 实现配置管理
 yarn add @nestjs/config
+
+# 接口文档访问
+启动项目
+http://localhost:3010/api-docs

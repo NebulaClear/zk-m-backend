@@ -3,7 +3,7 @@ import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Country } from './country.entity';
 import { Language } from '../../language/entities/language.entity';
 
-@Entity({ name: 'CountryLanguage' })
+@Entity({ name: 'country_language' })
 export class CountryLanguage {
   @PrimaryColumn({
     type: 'char',

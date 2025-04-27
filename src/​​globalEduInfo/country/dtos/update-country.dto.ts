@@ -5,41 +5,64 @@ import {
   IsDecimal,
   IsArray,
 } from 'class-validator';
+import { CountryLanguage } from '../entities/country-language.entity';
+import { CountryCurrency } from '../entities/country-currency.entity';
+import { CountryTimeZone } from '../entities/country-timezone.entity';
 
 export class UpdateCountryDto {
-  @IsOptional()
   @IsString()
-  name?: string;
+  country_en_name: string;
 
-  @IsOptional()
   @IsString()
-  capital?: string;
+  country_ch_name: string;
 
+  @IsString()
+  country_logo?: string;
+
+  @IsString()
   @IsOptional()
+  country_capital?: string;
+
   @IsNumber()
-  population?: number;
-
   @IsOptional()
+  country_population?: number;
+
   @IsDecimal()
-  area?: number;
-
   @IsOptional()
-  @IsArray()
-  currencies?: string[];
+  country_area?: number;
 
-  @IsOptional()
   @IsString()
-  primary_currency?: string;
-
   @IsOptional()
-  @IsArray()
-  languages?: string[];
+  country_climate?: string;
 
+  @IsString()
   @IsOptional()
-  @IsArray()
-  official_languages?: string[];
+  country_government_type?: string;
 
+  @IsString()
   @IsOptional()
+  country_description?: string;
+
+  @IsNumber()
+  @IsOptional()
+  country_safety_rating?: number;
+
   @IsArray()
-  timezones?: string[];
+  @IsString({ each: true })
+  currencies: CountryCurrency[];
+
+  @IsString()
+  primary_currency: string;
+
+  @IsArray()
+  @IsString({ each: true })
+  languages: CountryLanguage[];
+
+  @IsArray()
+  @IsString({ each: true })
+  official_languages: CountryLanguage[];
+
+  @IsArray()
+  @IsString({ each: true })
+  timezones: CountryTimeZone[];
 }
